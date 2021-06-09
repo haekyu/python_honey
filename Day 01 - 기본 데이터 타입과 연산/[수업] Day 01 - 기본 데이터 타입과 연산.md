@@ -255,7 +255,7 @@
             - 다른 언어에서 character 는 문자열에서 문자 하나 하나를 말함. 예를 들어 "abc" 라는 문자열 (string) 에서 'a', 'b', 'c' 가 character 임. 또 보통 string 은 큰따옴표로 묶고, character는 작은따옴표로 묶음. 
             - 그런데 python에서는 character 와 string 을 굳이 구분하지 않고 다 그냥 string 이라고 부름
         
-    - **membership **
+    - **membership** 연산
         
         - 어떤 문자안에 특정 문자열이 있냐?
             
@@ -294,57 +294,100 @@
                     파이썬 입장에서는 어쩌라고? 소리 나오게 생겼다.
                     ```
             
-                - 그치만 웬만하면 예약어를 변수이름으로 썼을 때 syntax 가 발생하므로 뭔가가 잘못되었음을 직감할 수 있다.
+                - 다행히, 예약어를 변수이름으로 썼을 때 웬만하면 syntax error 가 발생하므로 뭔가가 잘못되었음을 바로 직감할 수 있다.
             
-                - 예약어는 editor 웬만한 것들 쓰면 색깔이 알록달록하게 보이므로, 뭔가 알록달록한 단어에는 뭔 짓을 하지 않아야한다는 것을 기억하면 된다.
+                - 또 다행히, editor 쓰면 예약어들이 알록달록하게 보이므로, 뭔가 알록달록한 단어에는 뭔 짓을 하지 않아야한다는 것을 잘 기억하면 된다.
 
 - Boolean 의 기본 연산
-    - not
-        - not True --> False
-        - not False
-        - 예) a != b 의 다른 표현
-            - not (a == b)
-    - and (교집합, *)
-        - True and True  -->  True (교집합)
-        - True and False  -->  False (교집합, T!=F)
-        - False and True  -->  False (교집합, T!=F)
-        - False and False  -->  False (교집합)
-
-        - 예쁘다 and 귀엽다 --> 나간다
-        - 예쁘다 and 안귀엽다 --> 안나간다
-        - 안예쁘다 and 귀엽다 --> 안나간다
-        - 안예쁘다 and 안귀엽다 --> 안나간다
-    - or (합집합, +)
-        - True or True  --> True (합집합)
-        - True or False  -->  True (합집합)
-        - False or True  -->  True (합집합)
-        - False or False  -->  False (합해도, ...)
-
-        - 예쁘다 or 귀엽다 --> 나간다
-        - 예쁘다 or 안귀엽다 --> 나간다
-        - 안예쁘다 or 귀엽다 --> 나간다
-        - 안예쁘다 or 안나간다 --> 안나간다
+    - `not`
+        
+        - ```python
+            >>> not True
+            False
+            
+            >>> not False
+            True
+            ```
+        
+        - 예) `a != b` 의 다른 표현
+            - `not (a == b)`
+        
+    - `and` 
+        
+        - 교집합, 곱하기 (*) 와 관련이 깊다.
+        - 진리 연산표
+            - `True and True`  ==  True
+            - `True and False`  ==  False
+            - `False and True` ==  False
+            - `False and False` ==  False 
+        - 소개팅 예시) 나는 상대가 예쁘고 (and) 귀여운 사람일 때만 나간다!
+            - 예쁘다 and 귀엽다 --> 나간다 (True)
+            - 예쁘다 and 안귀엽다 --> 안나간다 (False)
+            - 안예쁘다 and 귀엽다 --> 안나간다 (False)
+            - 안예쁘다 and 안귀엽다 --> 안나간다 (False)
+                - 이 경우 교집합으로 and 를 해석하자면, 내 소개팅 풀에 
+                    - 예쁜 사람 집합 = 공집합 (empty, 아무도 없다)
+                    - 귀여운 사람 집합 = 공집합 (empty, 아무도 없다)
+                    - 두 공집합의 교집합은 어쨌든 공집합 (empty, 아무도 없다), 그래서 False
+        - 곱하기와의 관련
+            - True 에 1 을 넣고 False 에 0 을 넣은 뒤, and 대신 * 로 계산해 보자.
+            - `True and True`  == 1 *1 == 1 -> True
+            - `True and False`  ==  1 * 0 == 0 -> False
+            - `False and True` ==  0 * 1 == 0 -> False
+            - `False and False` ==  0 * 0 == 0 -> False 
+        
+    - or 
+        
+        - 합집합, 더하기 (+) 와 관련이 깊다.
+        - 진리 연산표
+            - `True or True`  == True
+            - `True or False`  ==  True (합집합)
+            - `False or True ` ==  True (합집합)
+            - `False or False`  ==  False (합해도, ...)
+        - 소개팅 예시) 나는 상대가 예쁘거나 (or) 귀여우면 나간다!
+            - 예쁘다 or 귀엽다 --> 나간다 (True)
+            - 예쁘다 or 안귀엽다 --> 나간다 (True)
+            - 안예쁘다 or 귀엽다 --> 나간다 (True)
+            - 안예쁘다 or 안나간다 --> 안나간다 (False)
     
-- (데이터)형 변환
-    - 예) 0 -> False
-    - x -> y
-        - y == float(x)
-    - 숫자 -> bool
-        - bool(0)
-        - bool(2)
-        - bool(-1)
-    - 문자 숫자
-        - '0.00' -> 0.00 (혹은 0.0)
-        - 32 -> '32'
-        - str(32)
-    - int('0.00')
+- (데이터) 형 변환
+
+    - 예) 0 -> False 이런 식으로 변화시키고싶을 때!
+
+    - 데이터 x를 어떤 데이터 타입 Y 로 변화시키고 싶다면
+
+        - `Y(x)` 를 실행시키면 된다.
+        - x 를 Y 라는 데이터 타입으로 감싸주면, x 가 Y 화 된다.
+
+    - 예)
+
+        - ```python
+            # boolean 화 된 0은 무엇일까? --> False
+            >>> bool(0)
+            False
+            
+            # float 화 된 '0.00' 은 무엇일까?
+            >>> float('0.00')
+            0.0
+            ```
+
+    - `type()`
+
+        - 어떠한 데이터가 무슨 데이터 타입인지를 알아내는 함수
+
+        - `type(x)` 는 x라는 데이터의 타입을 알려준다.
+
+        - 예)
+
+            - ```python
+                >>> type(10)
+                <class 'int'>
 
 
 
 
 
-** 추가 내용
-
-- string은 대소문자 비교
-- a ** b
-- type function
+- 추가 내용 (다음 시간에 설명)
+  - string은 대소문자 비교
+  - a ** b
+  - type function
