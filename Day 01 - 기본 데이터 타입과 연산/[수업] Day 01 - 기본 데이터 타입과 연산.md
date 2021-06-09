@@ -385,9 +385,7 @@
 
 
 
-
-
 - 추가 내용 (다음 시간에 설명)
-  - string은 대소문자 비교
+  - string은 대소문자 구분
   - a ** b
   - type function
