@@ -1,4 +1,7 @@
+## Day 03: list 2, while 문
+
 ### 오늘 내용
+
 - List 2
 - loop 문 중에서 while 문
     - while
@@ -157,8 +160,10 @@
           >>> lst[::-1]
           ['e', 'd', 'c', 'b', 'a']
           ```
-    
-      - 
+  
+- 잡 지식) Deep copy와 Shallow copy
+
+  - 
 
 
 
