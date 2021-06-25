@@ -161,6 +161,81 @@
           ['e', 'd', 'c', 'b', 'a']
           ```
   
+- `append`
+
+  - 리스트 맨 뒤에 원소 하나를 덧붙이는 함수
+  
+  - 규칙
+  
+    - ```python
+      lst = [...]
+      lst.append(원소)
+      ```
+    
+  - 예)
+  
+    ```python
+    lst = ['a', 'b', 'c']
+    lst.append(3)
+    print(lst)
+    ```
+    실행 결과
+  
+        ['a', 'b', 'c', 3]
+  
+  - **실수 주의!**
+  
+    ```python
+    lst = ['a', 'b', 'c']
+    lst = lst.append('d')
+    print(lst)
+    ```
+    실행 결과
+    
+        None
+  
+- List 와 str 의 비교
+
+  - 둘은 비슷. 웬만한 연산 둘 다 됨, 둘이 본질적으로 같은 형식으로 컴퓨터 내부에서 저장되어있기 때문.
+  
+    - indexing, slicing, `len()`, ... 웬만한 것들은 list 와 str 모두 사용 가능
+  
+  - 차이점
+  
+    - list 는 수정이 되고 (list는 read/write 가능하고)
+  
+    - str 은 수정이 안됨 (str은 read-only)
+  
+    - 예) list 는 write 가능
+      ```python
+      lst = ['a', 'b', 'c']
+      lst[0] = 'A'
+      print(lst)
+      ```
+  
+      실행 결과
+  
+      ```
+      ['A', 'b', 'c']
+      ```
+  
+    - 예2) str 은 read-only
+  
+      ```python
+      sss = 'abc'
+      sss[0] = 'A'
+      ```
+  
+      실행 결과 (에러 뜸. str 은 뭔가를 assign 못한단 뜻. 즉, 뭔가 값을 대입하지 못한단 뜻.)
+  
+      ```
+      Traceback (most recent call last):
+        File "<stdin>", line 1, in <module>
+      TypeError: 'str' object does not support item assignment
+      ```
+  
+      
+  
 - 잡 지식) Shallow copy 와 Deep copy
 
   - Shallow copy
