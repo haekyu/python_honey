@@ -1,0 +1,126 @@
+## Day 05: 함수
+
+
+
+### Why 함수?
+
+프로그래밍을 하다 보면 똑같은 내용을 반복해서 작성할 때가 종종 있다. 뭔가 비슷한 상황이 반복되는데 이걸 일일이 비슷한 내용을 계속 작성하기 귀찮아서 함수를 사용한다. 특히나, 입력값에 따라 결과가 다를수는 있지만 **로직 자체는 같은 경우**에, 그 **로직들을 계속 재사용**하고 싶어서 함수를 사용한다.
+
+
+
+### 함수 만들기
+
+- 함수를 정의한다, 혹은 define 한다 라고 부르기도 함
+
+- ```python
+  def 함수이름(인풋 변수1, 인풋 변수2, ...):
+      어쩌고
+      저쩌고
+      ...
+      return 아웃풋1, 아웃풋2, 아웃풋3, ..
+  ```
+
+- 이 때, def 는 예약어이기 때문에 다른 변수나 함수 이름 지을 때 쓰면 안된다!
+
+- output이 없는 경우, 아예 return 문장을 생략하기도 한다. 아무런 아웃풋도 return 하지 않으면 실제로 `return None` 이랑 같은 결과가 나온다.
+
+- 인풋 변수를 argument 혹은 parameter 라고 부르기도 한다.
+
+- 예)
+
+  ```python
+  # f(x) = x + 2
+  def f(x):
+      return x + 2
+  ```
+
+
+
+### 함수 사용하기
+
+- 함수를 call 한다 라고 부르기도 함
+
+- 함수 call 하는 법
+
+  ```python
+  아웃풋1, 아웃풋2, 아웃풋3, ... = 함수이름(인풋1, 인풋2, ...)
+  ```
+
+- 예 1)
+
+  ```python
+  def f(x):
+      return x + 2
+    
+  output = f(3)
+  print(output)
+  ```
+
+  실행 결과
+
+  ```
+  5
+  ```
+
+- 예 2)
+
+  ```python
+  def get_max(lst):
+    
+      # Initialize max_val
+      max_val = -100000
+      
+      # Get the maximum value in lst
+      # and store the max value in max_val
+      for e in lst:
+          if e > max_val:
+              max_val = e
+              
+      return max_val
+    
+  output = get_max([1, 5, -3, 8, 7, 0, -10])
+  print(output)
+  ```
+
+  실행 결과
+
+  ```
+  8
+  ```
+
+- 예 3)
+
+  ```python
+  def get_min_max(lst):
+    
+      # Initialize min_val and max_val
+      min_val = 100000
+      max_val = -100000
+      
+      # Get the minimum value in lst
+      # and store the min value in min_val
+      for e in lst:
+          if e < min_val:
+              min_val = e
+      
+      # Get the maximum value in lst
+      # and store the max value in max_val
+      for e in lst:
+          if e > max_val:
+              max_val = e
+              
+      return min_val, max_val
+    
+  lst = [1, 5, -3, 8, 7, 0, -10]
+  min_val, max_val = = get_max(lst)
+  print(min_val)
+  print(max_val)
+  ```
+
+  실행 결과
+
+  ```
+  -10
+  8
+  ```
+
