@@ -43,7 +43,7 @@
         
     
 - continue (iteration 스킵)
-    
+  
     - continue 를 만나는 순간부터 다음 iteration 으로 스킵
     
     - 예)
@@ -99,7 +99,7 @@
     - 이터레이터가 차례로 데이터 내의 원소가 되면서 어쩌고 저쩌고 액션을 취한다. 
 
 - 예)
-    
+  
     ```python
     lst = ['a', 'b', 'c']
     for e in lst:
@@ -206,7 +206,7 @@
               
 
         - `range(from, to, step)`
-            
+          
             - from 이상부터 to 미만까지, step 만큼 간격을 갖는 숫자의 배열
             
             - 예 1)
@@ -244,7 +244,7 @@
                 ```
             
             - 예 3)
-                
+              
                 ```python
                 lst = ['a', 'b', 'c', 'd', 'e']
                 for i in range(0, 5, 2):
@@ -261,16 +261,16 @@
                 ```
             
         - `range(to)`
-            
+          
             - 0부터 to까지의 숫자 배열
-                
+              
                 - from: 0이 default
                 - step: 1이 default
                 
             - 제일 흔하게 쓰는 경우
-                
+              
             - 예)
-                
+              
                 ```python
                 for i in range(3):
                     print(i)
