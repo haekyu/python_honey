@@ -113,7 +113,7 @@
                 - O(n<sup>2</sup>), O(50 n<sup>2</sup>) == O(n<sup>2</sup>)
         - `작은 term 무시`
             - O(n), O(2n), O(3n + 4) ==> O(n)
-            - O(3n<sup>2</sup> + 100000n) ==> O(<sup>2</sup>)
+            - O(3n<sup>2</sup> + 100000n) ==> O(n<sup>2</sup>)
                 - 3n^2 에 비하면 100000 n 은 너무 미미하다. 그래서 100000 n 따위는 무시
 - 예) Linear search vs. Binary Search (10)
     - Sorting 된 리스트 `lst = [an, bear, bravo, ..., zen]` 에서 `lst`안에 `hello` 가 있는지 찾는 문제가 있다고 해보자. lst의 길이를 `n` 이라고 하자 (즉, 인풋 크기 = n).
