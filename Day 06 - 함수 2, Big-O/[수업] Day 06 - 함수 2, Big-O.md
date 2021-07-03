@@ -116,10 +116,11 @@
             - O(3n<sup>2</sup> + 100000n) ==> O(n<sup>2</sup>)
                 - 3n^2 에 비하면 100000 n 은 너무 미미하다. 그래서 100000 n 따위는 무시
 - 예) Linear search vs. Binary Search (10)
-    - Sorting 된 리스트 `lst = [an, bear, bravo, ..., zen]` 에서 `lst`안에 `hello` 가 있는지 찾는 문제가 있다고 해보자. lst의 길이를 `n` 이라고 하자 (즉, 인풋 크기 = n).
+    - Sorting 된 리스트 `lst = ['an', 'bear', 'bravo', ..., 'zen']` 에서 `lst`안에 `'hello'` 가 있는지 찾는 문제가 있다고 해보자. 이 때, `lst`의 길이를 `n` 이라고 하자 (즉, 인풋 크기 = n).
     - Linear search
         - 앞에서부터 하나씩 일일이 확인해보는 방법.
         - O(n): 최대 n 시간 걸린다 (재수 없으면 끝까지 봐야함)
     - Binary search
         - 예시) 소주 술게임 업다운
         - O(log n): 내가 봐야할 문제 사이즈가 반씩 계속 줄어들기때문에 최종 O(log n). 
+
