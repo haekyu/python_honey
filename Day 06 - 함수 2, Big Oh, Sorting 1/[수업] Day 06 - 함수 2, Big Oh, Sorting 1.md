@@ -59,5 +59,31 @@
         - 변수를 저장하는 메모리가 무한대가 아니기때문에 변수는 죽게 마련이다. 
         - 죽어버린 변수는 더 이상 쓸 수 없기 때문에, 변수가 언제 생명을 다하는지 잘 알아야 내가 원하는대로 잘 돌아가는 코드를 만들 수 있다.
 
+- 변수의 namespace 와 lifetime 예시
 
+  ```python
+  """
+  File 명: test.py
+  """
+  
+  def f(x):
+      # Local 변수, local space
+      x = 10 
+      y = 100
+      print('in f:', y)
+  
+  # Global 변수, global space
+  y = 200
+  f(1)
+  print('out f:', y)
+  ```
+
+  실행 결과
+
+  ```
+  in f: 100
+  out f: 200
+  ```
+
+  <img src="../fig/function.png" style="zoom:200%;" />
 
