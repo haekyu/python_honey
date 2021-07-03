@@ -129,10 +129,19 @@
                         만약 방법 1) 만 안다면...
                         
                         ```python
-                        PCA(n_components=None, *, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto', random_state=어쩌고저쩌고)
+                        PCA(
+                          n_components=None, 
+                          *, 
+                          copy=True, 
+                          whiten=False, 
+                          svd_solver='auto', 
+                          tol=0.0, 
+                          iterated_power='auto', 
+                          random_state=어쩌고저쩌고
+                        )
                         ```
                         
-                        이렇게 써야겠지..... 아주 비효율적이다.
+                        이렇게 써야겠지..... 아주 비효율적이다 + 스크롤 압박 (아름답지 않다).
                 
             - 예) Default parameter 사용 예시
             
