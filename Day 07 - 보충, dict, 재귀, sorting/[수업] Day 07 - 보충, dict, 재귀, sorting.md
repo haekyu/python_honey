@@ -93,7 +93,7 @@
             
             ```python
             def f(x, y=0):
-            		return x + y
+                return x + y
             
             output = f(1)
             print(output)
