@@ -85,9 +85,7 @@
   out f: 200
   ```
 
-  
-
-  
+  <br><br>
 
   <img src="../fig/function.png" style="zoom:180%;" />
 
