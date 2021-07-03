@@ -1,9 +1,9 @@
-## Day 06: 함수 2, Big Oh, Sorting 1
+## Day 06: 함수 2, Big-O
+
 - 함수 2
     - Name space
     - Global 변수, Local 변수
-- Big Oh Notation    
-- Sorting 
+- Big-O Notation    
 
 
 
