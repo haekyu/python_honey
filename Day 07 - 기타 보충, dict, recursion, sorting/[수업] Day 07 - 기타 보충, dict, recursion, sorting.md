@@ -1,4 +1,5 @@
 ## 오늘
+
 - 보충
     - tuple
     - default parameter
@@ -13,23 +14,60 @@
 
 - tuple
     - **여러가지** 원소를 **순서대로** 배열한 데이터
-    - `(` 원소1, 원소2, 원소3, ... `)`
+    
+    - tuple 만들기
+    
+        - 소괄호로 열고 닫고, 그 안에 데이터들을 순서대로 콤마(,)로 구분하여 나열
+        - `(원소1, 원소2, 원소3, ... )`
+    
     - tuple vs list
-        - tuple 이랑 list 는 굉장히 비슷해서 웬만한 연산은 둘 다 가능
+        - 비슷한 점: tuple 이랑 list 는 굉장히 비슷해서 웬만한 연산은 둘 다 똑같이 사용 가능
             - indexing
-                <!-- ```python
+                
+                ``` python
                 tp = ('a', 'b', 'c')
                 print(tp[-1])
-                ``` -->
+                ```
+                
+                실행 결과
+                
+                ```
+                'c'
+                ```
+                
             - slicing
+                
+                ```python
                 tp = ('a', 'b', 'c', 'd')
                 print(tp[1:])
-        - 하지만, tuple 은 수정이 불가하고 (read-only, immutable) list 는 수정이 가능합니다 (write 가능, mutable)
+                ```
+                
+                실행 결과
+                
+                ```
+                ('b', 'c', 'd')
+                ```
+            
+        - 다른 점
+            
+            - tuple 은 수정이 불가하고 (read-only, immutable)
+                
+            - list 는 수정이 가능 (write 가능, mutable)
+                
             - 예)
-                <!-- ``` -->
+            
+                ```python
                 tp = ('a', 'b', 'c')
                 tp[0] = 'A'
-                <!-- ``` -->
+                ```
+            
+                실행 결과: 에러 뜸. tuple 에는 item assignment (아이템 / 원소 수정) 안된다는 뜻
+            
+            
+                ```
+                Traceback (most recent call last):
+                  File "<stdin>", line 1, in <module>
+                TypeError: 'tuple' object does not support item assignment
 - default parameter
     - parameter == 함수의 인풋변수
     - default parameter == 함수의 인풋변수 중에서 default 값을 가지는 애들
@@ -142,7 +180,7 @@
 def f(input, ...):
 
     # Base case
-
+    
     # Logic (induction)
 
 
@@ -205,26 +243,28 @@ n! = 1 * 2 * 3 * .... * n
     def f(n, memo):
 
         # Base case
-
+        
         # Logic
-
+        
             # 내가 미리 구한 값이 memo에 있는지 확인
-
+        
             # 있으면 그냥 쓰면 되고
-
+        
             # 없으면 그때 계산 때린다
-
+        
             # 메모한다
-
+        
             # 리턴한다
 
-            
+    
+    ​        
+
 def f(n, memo):
 
     # Base case
     if n <= 1:
         return 1
-
+    
     # Logic: f(n) = f(n-1) + f(n-2)
     
     # f(n-1)
@@ -233,18 +273,18 @@ def f(n, memo):
         f_n_1 = memo[n-1]
     else:
         f_n_1, memo = f(n-1, memo)
-
+    
     # f(n-2)
     # f_n_2 = reuse를 하든, 새로 계산을 때리든 구해요
     if n-2 in memo:
         f_n_2 = memo[n-2]
     else:
         f_n_2, memo = f(n-2, memo)
-
+    
     # 메모 (n)
     f_n = f_n_1 + f_n_2
     memo[n] = f_n
-
+    
     # return f_n, memo
 
 
@@ -265,12 +305,12 @@ def merge_sort(lst):
     middle_idx = int(len(lst) / 2)
     left_lst = lst[:middle_idx]
     right_lst = lst[middle_idx:]
-
+    
     # Sort (left_lst sorting, right_lst sorting)
     left_lst = merge_sort(left_lst)
     right_lst = merge_sort(right_lst)
-
+    
     # Merge (! append 잘 하면 됨)
     merged_lst = []
-
+    
     return lst # sort 된 버전의 리스트
