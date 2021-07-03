@@ -21,18 +21,20 @@
         
         y = 3
         ```
-        위의 예시에서
-            - y의 활동 공간은 가장 밖 공간 (global 한 공간) 이고
-            - x의 활동 공간은 f 함수 내부 (local 한 공간)이다
-        그래서 우리는
-            - y 의 namespace는 global space 라고 부르고
-            - x 의 namespace는 f 내부라고 부른다.
+        - 위의 예시에서
+          - y의 활동 공간은 가장 밖 공간 (global 한 공간) 이고
+          - x의 활동 공간은 f 함수 내부 (local 한 공간)이다.
+        - 그래서 우리는
+          - y 의 namespace는 global space 라고 부르고
+          - x 의 namespace는 f 내부라고 부른다.
     - 변수의 namespace 를 왜 (굳이) 알아야 하는가?
         - 변수가 은근히 같은 이름이 여러 번 나오기 때문. 인간의 작명 창의성의 한계에 의해.. 꽤 많은 경우 동명이인(?) 변수, 즉 같은 이름을 가진 다른 변수가 생기게 마련임. 
         - 이 때, 누가 누구인지를 구별해주기 위해 namespace 를 잘 알아야 함.
 - Global 변수 vs Local 변수
     - Global 변수: Global namespace 에서 접근 가능한 변수
+    
     - Local 변수: Local namespace 에서 접근 가능한 변수
+    
     - 예)
         ```python
         
@@ -43,8 +45,9 @@
         y = 3
         ```
         위의 예시에서
-            - x 는 (f 내의) local 변수
-            - y 는 global 변수
+        
+        - x 는 (f 내의) local 변수
+        - y 는 global 변수
 - 변수의 수명 (Variable lifetime)
     - 변수의 삶과 죽음
         - 변수가 살아있다 == 메모리 안에 존재한다
