@@ -70,49 +70,114 @@
                 TypeError: 'tuple' object does not support item assignment
 - default parameter
     - parameter == 함수의 인풋변수
+    
     - default parameter == 함수의 인풋변수 중에서 default 값을 가지는 애들
+    
     - default parameter 설정하는 방법
-        def f(input1, input2 = default 값, ...):
-            sdf
-            sdf
-            sfd
-            sdf
-
+        
+        ```python
+        def f(input1, input2=default2, ...):
+            ...
+        ```
+    
+        위에서 input2 라는 변수는 default2 라는 기본값 (default 값) 을 갖게 된다.
+        
     - default parameter 사용하는 방법
         - default 값을 쓰는 경우
-            - 값을 안주면 알아서 default 값으로 사용 됨
+            - default parameter에 값을 주지 않으면 알아서 default 값으로 사용 됨
+            
             - 예)
+                
+                ```python
                 def f(x, y=0):
-                    return x + y
-
-            - f(1) == 1  
-
+                		return x + y
+                
+                output = f(1)
+                print(output)
+                ```
+                
+                실행 결과
+                
+                ```
+                1
+                ```
+            
         - default 값을 쓰지 않는 경우
-            - 내가 원하는 값을 주면 됨
-
+            - (default) parameter에 내가 원하는 값을 주면, 내가 준 값이 인풋 변수에 들어감
+        
+            - 방법1) 기존에 default parameter 배우기 전에 하던 것 처럼, 그냥 인풋 변수의 순서에 맞게 값을 주거나
+            
+            - 방법2) `특정 변수 이름 = 내가 원하는 값` 의 형식으로, 변수 이름을 콕 찝어 값을 줘도 된다. 이 때의 변수를 keyword argument 라고 부르기도 한다. 다른 말로 하면, 함수를 call 할 때 인풋 변수의 이름이 명시적으로 쓰인 경우, 그 인풋 변수를 keyword argument 라고 한다.
+            
+                - 방법 2) 는 왜 생겼을까?
+                
+                    - (뇌피셜) Default parameter 가 엄청 많은 함수인 경우, 맨 끝에 있는 default parameter 만 값을 설정하고싶고 나머지 앞쪽 default parameter 들은 그냥 기본값을 쓰고싶다고 해보자. 이 경우, 인풋 값을 줄 때 변수 순서대로 주는 방법밖에 모른다면, 맨 끝 parameter 만 값을 따로 설정하고싶음에도 불구하고 앞에 있는 모든 다른 paramter 까지 값을 설정해줘야한다. 즉 비효율적.
+                    
+                    - 예) 
+                    
+                        ```python
+                        def PCA(n_components=None, *, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto', random_state=None):
+                            ...
+                        ```
+                        
+                        위와 같이 PCA 라는 함수를 쓰고 싶다고 해보자. default parameter가 정말 많다. 맨 마지막 인풋 변수 random_state 만 값을 따로 지정하고싶을 때 제일 효율적인 방법은 `방법 2) keyword argument` 를 사용하는 것이다.
+                        
+                        ```python
+                        PCA(random_state=어쩌고저쩌고)
+                        ```
+                        
+                        만약 방법 1) 만 안다면...
+                        
+                        ```python
+                        PCA(n_components=None, *, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto', random_state=어쩌고저쩌고)
+                        ```
+                        
+                        이렇게 써야겠지..... 아주 비효율적이다.
+                
+            - 예) Default parameter 사용 예시
+            
+                ```python
                 def f(x, y=0):
                     return x + y
-
-                f(1, 100) == ?
-                f(1, y=100)
-
-        - 
-        <!-- PCA(n_components=None, *, copy=True, whiten=False, svd_solver='auto', tol=0.0, iterated_power='auto', random_state=None)
-        PCA(random_state='sdfsdf') -->
-        - 평범한 parameter와 default parameter 가 같이 있을 경우, 평범한 parameter 먼저 써줘야 함
-            def f(a=1, b, c=3, d):
-                sdfd
-                sdf
-                sdf
-
-            def g(a, b, c=3, d=4):
-                sdf
-                sdf
-                dsf
-
-            f(100, 200, 300)
-            g(100, 200, 300)
-
+                
+                # 방법 1) 일반 함수 call 방식
+                output1 = f(1, 100)
+                
+                # 방법 2) keyword argument
+                output2 = f(1, y=100)
+                
+                print(output1)
+                print(output2)
+                ```
+            
+        - 평범한 parameter (non-default paramter) 와 default parameter 가 같이 있을 경우, 평범한 parameter 먼저 써줘야 함.
+            
+            - 예) 
+                
+                ```python
+                def f(a, b, c=3, d=4):
+                    ...
+                ```
+            
+            - 왜 non-default parameter 와 defaut parameter 간 순서가 생겼을까?
+        
+              - (뇌피셜) 이렇게 순서를 정해놓지 않으면 어느 인풋 변수에 어떤 값을 넣어야 할지 곤란한 경우가 생긴다.
+            
+              - 예) 
+            
+                ```python
+                def f(a=1, b, c=3, d):
+                    print(a, b, c, d)
+                    
+                f(100, 200, 300)
+                ```
+            
+                위 경우를 생각해보자. 100, 200, 300 중에서 두 개는 non-default parameter 인 b 나 d 의 값이 될텐데.. 누가 어떤 값을 가지게 될지 모르는 난감한 상황이 발생한다. 아마 그래서 non-default parameter 를 먼저 앞에 두고, 그 다음에 default parameter 들이 오는 순서가 생기지 않았을까 싶다. 암튼 위의 코드를 실행하면 SyntaxError 가 발생한다.
+            
+                ```
+                SyntaxError: non-default argument follows default argument
+                ```
+    
 - lambda: 이름 없는 함수 
     - 장점: 공간 save (특히나, 굳이 로직을 reuse 할 필요 없이, 그냥 한줄정도로 땡치고싶을 때)
     - 규칙
@@ -131,7 +196,8 @@
 
         루트 64
 
-### dict
+### Dict
+
 - (이론) Hash Table
     - 빠른 search 를 위해 태어난 자료 구조
     - (key(word), value) 여러개 + 맵핑 당 순서 없음
