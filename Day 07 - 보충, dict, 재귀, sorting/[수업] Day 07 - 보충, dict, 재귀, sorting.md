@@ -341,11 +341,11 @@
     print('Is cherry in d?', 'cherry' in d)
     
     # 맵핑 추가하기
-    d['watermellon'] = 'green'
+    d['watermelon'] = 'green'
     print(d)
     
     # 맵핑 수정하기
-    d['watermellon'] = 'green_and_black'
+    d['watermelon'] = 'green_and_black'
     print(d)
     ```
     
@@ -355,8 +355,8 @@
     Value of apple: red
     Is apple in d? True
     Is cherry in d? False
-    {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermellon': 'ㅎgreen'}
-    {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermellon': 'green_and_black'}
+    {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermelon': 'green'}
+    {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermelon': 'green_and_black'}
     ```
 
 
