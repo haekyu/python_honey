@@ -232,35 +232,129 @@
 
 ## Dictionary
 
-- (이론) Hash Table
+- Hash Table 이라고 부르기도 한다 (이론적인 이름)
     - 빠른 search 를 위해 태어난 자료 구조
-    - (key(word), value) 여러개 + 맵핑 당 순서 없음
-    - Search time complexity: O(1) 
-- key가 있는지 없는지 (membership)
-    - in
-- 정의
-    d = {key1: val1, key2: val2, key3: val3}
+      - Search time complexity: O(1) (엄청 빠름!!)
+    - (key: value) 맵핑을 여러개 저장한 자료구조
+      - 검색어는 key, 그에 맵핑된 값은 value 라고 부른다.
+      - 단, dictionary 는 순서가 없는 자료구조이다. 즉, 맵핑들끼리 순서가 없다.
+    
+- dict 만드는 방법
 
-    d = {}
-    d[key1] = val1
-    d[key2] = val2
-    d[key3] = val3
+    - 중괄호 {}로 묶어줌
 
+    - (key: value) 맵핑들을 쉼표(,)로 구분하여 나열
+
+    - 예)
+
+        ```python
+        profiles = {'짱구': 10, '유리': 20, '철수': 30}
+        ```
+
+- 검색하기
+    
+    - key를 대괄호 안에 넣어주면 해당 value가 나옴
+    
+    - `딕셔너리[key]`
+    
+    - 예)
+    
+        ```python
+        profiles = {'짱구': 10, '유리': 20, '철수': 30}
+        age_of_chulsoo = profiles['철수']
+        print(age_of_chulsoo)
+        ```
+    
+        출력 결과
+    
+        ```
+        30
+        ```
+    
+- 맵핑하기
+
+    - 기존 dictionary에 맵핑을 추가하거나 수정할 수 있다
+
+    - `딕셔너리[key] = val`
+
+    - 예)
+
+        ```python
+        profiles = {'짱구': 10, '유리': 20, '철수': 30}
+        
+        # 맵핑 추가
+        profiles['흰둥이'] = 1 
+        
+        # 기존 맵핑 수정
+        profiles['짱구'] = 5 
+        profiles['유리'] = 5 
+        profiles['철수'] = 5 
+        
+        print(profiles)
+        ```
+
+        출력 결과
+
+        ```
+        {'흰둥이': 1, '짱구': 5, '유리': 5, '철수': 5}
+        ```
+
+- `key`가 있는지 없는지 (membership)
+    
+    - `in` 혹은 `not in` 사용하면 됨.
+    
+    - 예)
+    
+      ```python
+      profiles = {'흰둥이': 1, '짱구': 5, '유리': 5, '철수': 5}
+      print('짱구' in profiles)
+      print('훈이' in profiles)
+      ```
+    
+      실행 결과
+    
+      ```
+      True
+      False
+      ```
+    
+      
+    
+- 예)
+    
+    ```python
     d = {
         'apple': 'red', 
         'banana': 'yellow',
         'peach': 'pink'
     }
-
-    'apple' in d --> True / False
-    'cherry' in d
-
+    
+    # 검색하기
+    print('Value of apple:', d['apple'])
+    
+    # Membership
+    print('Is apple in d?', 'apple' in d)
+    print('Is cherry in d?', 'cherry' in d)
+    
+    # 맵핑 추가하기
     d['watermellon'] = 'green'
-
+    print(d)
+    
+    # 맵핑 수정하기
     d['watermellon'] = 'green_and_black'
-
-    d['apple']
-
+    print(d)
+    ```
+    
+    실행 결과
+    
+    ```
+    Value of apple: red
+    Is apple in d? True
+    Is cherry in d? False
+    {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermellon': 'ㅎgreen'}
+    {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermellon': 'green_and_black'}
+    ```
+    
     
 ## Recursive function (재귀함수)
 
@@ -390,70 +484,131 @@
     55
     ```
 
-- 그러나... 재귀함수는 함부로 쓰면 안됨
-    - 계산량이 exponential 하게 많아질 수 있기 때문에 / 중복 계산이 너무 많기 때문에
-    - 예) f(n) = f(n-1) + f(n-2)
+### 재귀함수의 함정
+
+- 재귀함수는 함부로 쓰면 안됨. 잘못 만들면 계산량이 exponential 하게 많아질 수 있기 때문이다. 거의 대부분의 원인은 중복 계산이 너무 많아지는 경우이다.
+
+- 예) 피보나치 함수의 경우 `f(n) = f(n-1) + f(n-2)`
+
+  <img src="../fig/fib-exponential.png" style="zoom:180%;" />
+
+  (위 그림은 차후 수정될 예정)
+
+  위 경우에 f(98) 이 두 번, f(96) 이 세 번 그 이상 뭔가 중복 계산이 많아진 것을 확인할 수 있을 것이다. Depth를 한 칸 내려올 때마다 계산량이 1, 2, 4, 8, ... 두배씩 늘어나는 것을 확인할 수 있다. 이 폭발적으로 증가하는 계산량을 Big-O notation으로 표시하면 무려 O(2<sup>n</sup>) (즉, 쓔뤠기) 이다.
+
 - 빠른 재귀함수를 만드는 방법 == 중복 계산을 없애자!
-    - Dynamic programming
-    - Tail recursion - 우리는 이 부분은 스킵합니다
+    - 방법 1) Dynamic programming
+    - 방법 2) Tail recursion - 우리는 이 부분은 스킵합니다
+    - 방법 3) Iterative 하게 만들기 - 우리는 이 부분은 스킵합니다
+    - 방법 4) ... 기타 등등 ...
+
+### Dynamic Programming
 
 - Dynamic programming
-  - 내가 이미 계산한 값이 있으면, 그 값을 기억해 뒀다가 reuse 하는방식
+  - 내가 이미 계산한 값이 있으면, 그 값을 메모해 뒀다가 reuse 하는방식
 
-- 
+- 예 1) 피보나치 dynamic programming - Global memo 버전
 
-def f(n, memo):
+  ```python
+  # Global 변수에 memo 만듦
+  memo = {}
+  
+  def f(n):
+  
+      # Base case
+      if n <= 1:
+          return 1
+  
+      # Logic: f(n) = f(n-1) + f(n-2)
+      # f(n-1): memo에 있으면 reuse하고, 아니면 새로 구하기
+      if n - 1 in memo:
+          f_n_1 = memo[n - 1]
+      else:
+          f_n_1 = f(n - 1)
+  
+      # f(n-2): memo에 있으면 reuse하고, 아니면 새로 구하기
+      if n - 2 in memo:
+          f_n_2 = memo[n - 2]
+      else:
+          f_n_2 = f(n - 2)
+  
+      # f(n) 메모하기
+      f_n = f_n_1 + f_n_2
+      memo[n] = f_n
+  
+      # 리턴
+      return f_n	
+  
+  f_10 = f(10)
+  print(f_10)
+  print(memo)
+  ```
 
-    # Base case
-    
-    # Logic
-    
-        # 내가 미리 구한 값이 memo에 있는지 확인
-    
-        # 있으면 그냥 쓰면 되고
-    
-        # 없으면 그때 계산 때린다
-    
-        # 메모한다
-    
-        # 리턴한다
+  출력 결과
 
+  ```
+  89
+  {0: 1, 1: 1, 2: 2, 3: 3, 4: 5, 5: 8, 6: 13, 7: 21, 8: 34, 9: 55, 10: 89}
+  ```
 
-​        
+- 예 2) 피보나치 dynamic programming - Local memo 버전 (좀 더 추천)
 
-def f(n, memo):
+  ```python
+  def f(n, memo):
+      '''
+      Dynammic programming 으로 구현한 피보나치 함수
+      Args:
+          n: 피보나치 수를 구할 index
+          memo: 지금까지 구한 memo
+      Returns:
+          f_n: f(n)
+          memo: 기존 memo에 f(n) 을 추가한 버전의 memo
+      '''
+  
+      # Base case
+      if n <= 1:
+          # Base case 메모하기
+          memo[1] = 1
+          
+          # 리턴값 주의! memo를 함께 리턴해준다
+          return 1, memo
+  
+      # Logic: f(n) = f(n-1) + f(n-2)
+      # f(n-1): memo에 있으면 reuse하고, 아니면 새로 구하기
+      if n - 1 in memo:
+          f_n_1 = memo[n - 1]
+      else:
+          f_n_1, memo = f(n - 1, memo)
+  
+      # f(n-2): memo에 있으면 reuse하고, 아니면 새로 구하기
+      if n - 2 in memo:
+          f_n_2 = memo[n - 2]
+      else:
+          f_n_2, memo = f(n - 2, memo)
+  
+      # f(n) 메모하기
+      f_n = f_n_1 + f_n_2
+      memo[n] = f_n
+  
+      # 리턴값 주의! memo를 함께 리턴해준다
+      return f_n, memo
+  
+  
+  memo = {}
+  f_10, memo = f(10, memo)
+  print(f_10)
+  print(memo)
+  
+  ```
 
-    # Base case
-    if n <= 1:
-        return 1
-    
-    # Logic: f(n) = f(n-1) + f(n-2)
-    
-    # f(n-1)
-    # f_n_1 = reuse를 하든, 새로 계산을 때리든 구해요
-    if n-1 in memo:
-        f_n_1 = memo[n-1]
-    else:
-        f_n_1, memo = f(n-1, memo)
-    
-    # f(n-2)
-    # f_n_2 = reuse를 하든, 새로 계산을 때리든 구해요
-    if n-2 in memo:
-        f_n_2 = memo[n-2]
-    else:
-        f_n_2, memo = f(n-2, memo)
-    
-    # 메모 (n)
-    f_n = f_n_1 + f_n_2
-    memo[n] = f_n
-    
-    # return f_n, memo
+  실행 결과
 
+  ```
+  89
+  {0: 1, 1: 1, 2: 2, 3: 3, 4: 5, 5: 8, 6: 13, 7: 21, 8: 34, 9: 55, 10: 89}
+  ```
 
-
-// memo[n] = f(n)
-memo = {}
-f(100, memo)
+  
 
 ### Sorting
 - Selection Sort: O(n^2)
