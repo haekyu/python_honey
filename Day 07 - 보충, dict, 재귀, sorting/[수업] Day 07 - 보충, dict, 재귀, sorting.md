@@ -10,6 +10,8 @@
     - 이론
     - Big-O notation
 
+
+
 ## 보충
 
 ### tuple
@@ -228,7 +230,9 @@
     3
     ```
 
-    
+
+
+
 
 ## Dictionary
 
@@ -354,8 +358,11 @@
     {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermellon': 'ㅎgreen'}
     {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermellon': 'green_and_black'}
     ```
-    
-    
+
+
+
+
+
 ## Recursive function (재귀함수)
 
 ### 재귀함수란?
