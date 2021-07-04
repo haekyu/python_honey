@@ -7,8 +7,6 @@
 - Dictionary (dict)
 - Recursion (재귀)
 - Sorting
-    - 이론
-    - Big-O notation
 
 
 
@@ -359,9 +357,24 @@
     {'apple': 'red', 'banana': 'yellow', 'peach': 'pink', 'watermelon': 'green_and_black'}
     ```
 
+- (발그림 주의) Dictionary, dict 는 어떻게 구현되어있을까? 왜 검색이 빠를까?
 
+  <img src="../fig/dict.png" style="zoom:180%;" />
 
-
+  - 딕셔너리 내부적으로는 여러 맵핑을 저장할 수 있는 리스트같은 것이 있을 것이다.
+  - 그러나, 단순히 원소들 (맵핑들) 을 리스트에 차례로 넣는 것이 아니라
+    - `hash 함수` 라는 마법 함수를 사용하여, 즉, key 를 인풋으로 주면 그 key가 위치한 index를 바로 알려주는 hash 함수를 사용하여
+    - 내가 원하는 key가 어디 있나 일일이 리스트를 뒤질 필요 없이
+    - 바로 원하는 장소에서 원하는 key:value 맵핑을 찾아낸다.
+  - 이러한 hash 함수덕에, 검색 time complexity가 O(1) 인 것이다!
+  - Hash 함수
+    - Hash 함수가 어떻게 구현되어있는지는 우리가 알 필요는 없다. 이 자체가 연구대상임. 파이썬이 어떤 hash 함수 쓰는지도 잘 모르겠음. 
+    - 그러나 ideal한 hash 함수의 특징들이 있음
+      - Index 계산하는 데에 오래 걸리지 않고 (검색할때마다 오래걸리면 난감 ^^;)
+      - (중요) **Conflict을 최대한 만들지 않는** 함수가 좋은 hash 함수임.
+        - Conflict이 뭐냐면, 다른 key가 같은 hash 값 (index) 를 갖게 되는 경우를 말함.
+        - 예를 들어, 위 그림에서, hash(고양이) = hash(강아지) = 98 (index) 일 경우, 고양이와 강아지가 conflict 났다고 말한다. conflict가 발생하면 그냥 conflict 난 애들을 리스트로 묶어서 다 저장한다. (위 그림에서 초록색 l98 참고)
+        - Conflict 이 많이 발생하는 hash함수를 쓸거면, 굳이 dictionary 쓸 필요가 없음. 그냥 list쓰는 것과 별로 다를 바가 없기 때문. 극단적인 경우, 모든 맵핑들이 다 conflict 나면 (즉, hash 함수가 상수함수라면) 모든 맵핑들이 같은 인덱스에 구겨넣어짐. 즉 다 같은 list 에 들어가게 됨. 걍 리스트임.
 
 ## Recursive function (재귀함수)
 
@@ -501,7 +514,7 @@
 
   (위 그림은 차후 수정될 예정)
 
-  위 경우에 f(98) 이 두 번, f(96) 이 세 번 그 이상 뭔가 중복 계산이 많아진 것을 확인할 수 있을 것이다. Depth를 한 칸 내려올 때마다 계산량이 1, 2, 4, 8, ... 두배씩 늘어나는 것을 확인할 수 있다. 이 폭발적으로 증가하는 계산량을 Big-O notation으로 표시하면 무려 O(2<sup>n</sup>) (즉, 쓔뤠기) 이다.
+  위 경우에 f(98) 이 두 번, f(96) 이 세 번 그 이상 뭔가 중복 계산이 많아진 것을 확인할 수 있을 것이다. Depth를 한 칸 내려올 때마다 계산량이 1, 2, 4, 8, ... 두배씩 늘어나는 것을 확인할 수 있다. 이 폭발적으로 증가하는 계산량을 Big-O notation으로 표시하면 무려 O(2<sup>n</sup>) (즉, 슈뤠기) 이다.
 
 - 빠른 재귀함수를 만드는 방법 == 중복 계산을 없애자!
     - 방법 1) Dynamic programming
@@ -512,6 +525,7 @@
 ### Dynamic Programming
 
 - Dynamic programming
+
   - 내가 이미 계산한 값이 있으면, 그 값을 메모해 뒀다가 reuse 하는방식
 
 - 예 1) 피보나치 dynamic programming - Global memo 버전
@@ -617,24 +631,191 @@
 
   
 
-### Sorting
-- Selection Sort: O(n^2)
-- Insertion Sort: O(n^2)
+## Sorting
+
+### Sorting 종류
+
+- Selection Sort: O(n<sup>2</sup>)
+- Insertion Sort: O(n<sup>2</sup>)
 - Merge Sort: O(n log n)
+- 기타 등등
 
+### 알고리즘보고 time complexity 계산하는 훈련
 
-def merge_sort(lst):
+- (발그림 주의)
+
+- Selection Sort 의 pseudo-code 보고 time complexity 계산
+
+<img src="../fig/tc-prac-1.png" style="zoom:180%;" />
+
+- Selection Sort 내부의 find_min 함수가 있음. find_min 함수의 코드를 보고 time complexity 계산
+
+<img src="../fig/tc-prac-2.png" style="zoom:180%;" />
+
+- 결과
+
+  <img src="../fig/tc-prac-3.png" style="zoom:180%;" />
+
+### Insertion Sort 
+
+- lst 의 앞 부분에 sorted array를 완성시켜나가는 방식이다. 원소 하나씩 하나씩 앞 부분에 넣어간다.
+- 예시) 
+    + [5, 1, 2, 6, 2, 1, 3, 0] 가 주어졌다. 
+    + round 0: lst[0: 0 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```5```, 1, 2, 5, 2, 1, 3, 0] 에서 ```5```는 sorted 완료. round 0 완료.
+    + round 1: lst[0: 1 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```5```, **1**, 2, 5, 2, 1, 3, 0] 에서 **1**을 sorted array 안에 넣는다.
+        - [```1, 5```, 2, 5, 2, 1, 3, 0] 이 된다. round 1 완료.
+    + round 2: lst[0: 2 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```1, 5```, **2**, 5, 2, 1, 3, 0] 에서 **2** 를 sorted array 안에 넣는다.
+        - [```1, 2, 5```, 5, 2, 1, 3, 0] 이 된다. round 2 완료.
+    + round 3: lst[0: 3 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```1, 2, 5```, **5**, 2, 1, 3, 0] 에서
+        - [```1, 2, 5, 5```, 2, 1, 3, 0] 가 된다.
+    + round 4: lst[0: 4 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```1, 2, 5, 5```, **2**, 1, 3, 0] 에서
+        - [```1, 2, 2, 5, 5```, 1, 3, 0] 가 된다.
+    + round 5: lst[0: 5 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```1, 2, 2, 5, 5```, **1**, 3, 0] 에서
+        - [```1, 1, 2, 2, 5, 5```, 3, 0] 가 된다.
+    + round 6: lst[0: 6 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```1, 1, 2, 2, 5, 5```, **3**, 0] 에서
+        - [```1, 1, 2, 2, 3, 5, 5```, 0] 가 된다.
+    + round 7: lst[0: 7 + 1] 부분을 sorted array로 만드는 것이 목표.
+        - [```1, 1, 2, 2, 3, 5, 5```, **0**] 에서
+        - [```0, 1, 1, 2, 2, 3, 5, 5```] 가 된다.
+
+- Insertion sort 코드
+
+  - input: unsorted list
+
+  - output: sorted list
+
+    ```python
+    def insertion_sort(lst):
+      
+        for rnd in range(0, len(lst)):
+            # Current rnd (round) 에서는
+            # - lst[0: rnd] 가 현재로서는 sorted array이고
+            # - lst[0: rnd + 1] 을 sorted array로 만들 예정이다.
+            
+            # sorted array에 새로 insert 할 target
+            target_to_insert = lst[rnd]
+            
+            # target_to_put_in 을 lst[0: rnd] 안에 잘 넣는다.
+            # target을 앞 원소부터 비교해가며, 삽입할 위치를 찾는다.
+            # 삽입할 위치를 idx 라고 하자. idx = rnd 로 initialize 하는 것 주의!
+            idx = rnd
+            for j in range(0, rnd):
+                if lst[j] > target_to_insert:
+                    idx = j
+                    break
+            
+            # target_to_insert 을 적절한 위치에 넣는다.
+            inserted_left_lst = lst[:idx] + [target_to_insert] + lst[idx: rnd]
+            lst[:rnd + 1] = inserted_left_lst
+            
+        return lst
     
+    
+    lst = [5, 1, 2, 6, 2, 1, 3, 0]
+    print('before sorting:', lst)
+    
+    sorted_lst = insertion_sort(lst)
+    print('after sorting:', sorted_lst)
+    ```
+
+    실행 결과
+
+    ```
+    before sorting: [5, 1, 2, 6, 2, 1, 3, 0]
+    after sorting: [0, 1, 1, 2, 2, 3, 5, 6]
+    ```
+
+    
+
+### Merge Sort
+
+```python
+def merge_sort(lst):
+
+    # Base case (!!!! 중요 !!!!)
+    if len(lst) <= 1:
+        return lst
+
     # Divide (left_lst, right_lst)
     middle_idx = int(len(lst) / 2)
     left_lst = lst[:middle_idx]
     right_lst = lst[middle_idx:]
-    
+
     # Sort (left_lst sorting, right_lst sorting)
     left_lst = merge_sort(left_lst)
     right_lst = merge_sort(right_lst)
-    
-    # Merge (! append 잘 하면 됨)
+
+    # Merge (!!!! 중요 !!!! append 잘 하면 됨, 아래 함수 참고)
+    merged_lst = merge(left_lst, right_lst)
+
+    return merged_lst
+
+
+def merge(left_lst, right_lst):
+
+    # If an input lst is empty, return the other lst
+    # No need to merge
+    if len(left_lst) == 0:
+        return right_lst
+    elif len(right_lst) == 0:
+        return left_lst
+
+    # Initialize variables
+    left_idx = 0
+    right_idx = 0
     merged_lst = []
-    
-    return lst # sort 된 버전의 리스트
+
+    # Merge left_lst and right_lst
+    while (left_idx < len(left_lst)) or (right_idx < len(right_lst)):
+
+        # Check whether we want left or right value to insert
+        want_left = False
+        left_val = left_lst[left_idx]
+        right_val = right_lst[right_idx]
+        if left_val < right_val:
+            want_left = True
+
+        # Insert left value if want_left == True
+        if want_left:
+            merged_lst.append(left_val)
+            left_idx += 1
+
+        # Insert right value if want_left == False
+        else:
+            merged_lst.append(right_val)
+            right_idx += 1
+
+        # Check if all values of one of the list are scanned 
+        if left_idx == len(left_lst):
+            merged_lst = merged_lst + right_lst[right_idx:]
+            break
+        if right_idx == len(right_lst):
+            merged_lst = merged_lst + left_lst[left_idx:]
+            break
+
+    return merged_lst
+
+
+lst = [5, 1, 2, 6, 2, 1, 3, 0]
+sorted_lst = merge_sort(lst)
+print('before sorting:', lst)
+print('after sorting:', sorted_lst)
+
+```
+
+실행 결과
+
+```
+before sorting: [5, 1, 2, 6, 2, 1, 3, 0]
+after sorting: [0, 1, 1, 2, 2, 3, 5, 6]
+```
+
+
+
