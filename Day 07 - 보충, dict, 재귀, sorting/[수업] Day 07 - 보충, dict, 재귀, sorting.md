@@ -285,11 +285,11 @@
 
     ```python
     def f(input, ...):
-    	  # Base case
-    		Base case 를 리턴
+        # Base case
+        Base case 를 리턴
     		
-    	  # Logic (induction)
-    	  재귀 식을 통해 얻은 결과물을 리턴
+        # Logic (induction)
+        재귀 식을 통해 얻은 결과물을 리턴
     ```
 
 - Base case의 중요성
@@ -300,9 +300,9 @@
 
         ```python
         def f(i):
-        		# Base case 없음
+            # Base case 없음
         		
-        		# Logic
+            # Logic
             return f(i - 1) + f(i - 2)
         
         print(f(7))
