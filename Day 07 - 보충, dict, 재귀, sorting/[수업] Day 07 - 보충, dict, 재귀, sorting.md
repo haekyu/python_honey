@@ -4,9 +4,9 @@
     - tuple
     - default parameter
     - lambda: 이름 없는 함수
-- dict
-- recursion (재귀)
-- sorting
+- Dictionary (dict)
+- Recursion (재귀)
+- Sorting
     - 이론
     - Big-O notation
 
@@ -192,24 +192,45 @@
 
 ### lambda: 이름 없는 함수 
 
-- 장점: 공간 save (특히나, 굳이 로직을 reuse 할 필요 없이, 그냥 한줄정도로 땡치고싶을 때)
-- 규칙
-    lambda 인풋1, 인풋2, ... : 함수 결과 output 나오는 식
-- 
+- Lambda 는 함수를 만드는 또 다른 방법 중 하나. 기존에 우리가 배웠던 def 를 통해 함수를 만드는 것과 다른 점은, **lambda 함수는 이름이 따로 없다**는 것이다.
+
+- lambda 함수는 
+
+    - 간단한 로직을
+    - 한줄 정도로 땡치고 싶을때 줄로 쓴다.
+
+- lambda 함수 만들기
+
+    ```python
+    lambda 인풋1, 인풋2, ... : 로직 (로직의 결과 output이 나오는 형태)
+    ```
+
+- 예)
+
+    ```python
     def f(x, y):
         return x + y
-
+    
+    # 위 f 함수를 아래처럼 lambda 함수로 표현할 수 있다.
     lambda x, y: x + y
+    
+    # 우리가 함수를 call 할 때, 아래처럼 괄호 열고 닫고 인풋을 차례로 넣어주듯이
+    f(1, 2) 
+    
+    # lambda 함수도 call 하려면, 아래처럼 괄호 열고 닫고 인풋을 차례로 넣어주면 된다
+    output = (lambda x, y: x + y) (1, 2)
+    print(output)
+    ```
 
-    f(1, 2)
-    (lambda x, y: x + y) (1, 2)
+    실행결과
 
-    def sqrt(x):
-        return x ** 0.5
+    ```
+    3
+    ```
 
-    루트 64
+    
 
-### Dict
+## Dictionary
 
 - (이론) Hash Table
     - 빠른 search 를 위해 태어난 자료 구조
