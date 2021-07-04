@@ -262,102 +262,158 @@
     d['apple']
 
     
-### Recursion (재귀)
-- Recursive function (재귀함수)
-- 피보나치 수열
+### Recursive function (재귀함수)
+
+- 어떤 함수를 정의할 때 자기 자신을 정의에 사용하는 경우, 이 함수를 재귀함수라고 함.
+
+- 예) 피보나치 수열
+
     - 1, 1, 2, 3, 5, 8, 13, 21, ...
     - 피보나치 수열의 7번째 숫자는 21
-- 내가 어떤 값을 구하려고 하는데 (함수의 값을 구하려고 하는데)
-    - 내가 같은 로직으로 구했던 (즉 같은 함수를 통해 구했던) 다른 값들이 이용될때
-    - 그 때 재귀함수 (recursion) 을 쓴다
-    - def f(i): 
-        return i번째 피보나치 수
+    - `fib(n) = fib(n-1) + fib(n-2)`
 
-    - f(7) = f(6) + f(5)
-    - f(x) = f(x-1) + f(x-2)
-- Recursive function 만드는 **규칙**
+- 재귀 함수의 구성 요소
 
-def f(input, ...):
+    - Base Case
+        - 알고리즘의 **초기값**을 반드시 정의해줘야함!
+        - 초기값을 정하지 않으면 Recursion Error 발생
+    - Logic (induction, 재귀 식)
 
-    # Base case
+- 재귀 함수 코드 스타일
+
+    ```python
+    def f(input, ...):
+    	  # Base case
+    		Base case 를 리턴
+    		
+    	  # Logic (induction)
+    	  재귀 식을 통해 얻은 결과물을 리턴
+    ```
+
+    중요한 것은 Base case 를 먼저 리턴해줘야한다는 것이다! Base case 로 쉽게 처리될 경우에 Logic 을 굳이 거칠 필요가 없기 때문이다. 또 Base case 에 한번도 다다르지 않으면 결국 그 코드는 recursion으 무한한 깊은 늪에 빠지고 만다.
+
+    - 예) Base case 없는 경우
+
+      ```python
+      def f(i):
+      		# Base case 없음
+      		
+      		# Logic
+          return f(i - 1) + f(i - 2)
+      
+      print(f(7))
+      ```
+
+      실행결과: recursion 에서 실행가능한 최대 깊이를 초과했다 (대략 recursion이 무한으로 돌고 있다는 말임)
+
+      ```
+      RecursionError: maximum recursion depth exceeded
+      ```
+
+      왜 무한으로 빠지냐면... 컴퓨터 입장에서는
+
+      ```
+      f(7) 를 구하려면 f(6) + f(5) 니까 f(6) 를 먼저 구해야지
+      f(6) 를 구하려면 f(5) + f(4) 니까 f(5) 를 먼저 구해야지
+      f(5) 를 구하려면 f(4) + f(3) 니까 f(4) 를 먼저 구해야지
+      f(4) 를 구하려면 f(3) + f(2) 니까 f(3) 을 먼저 구해야지
+      f(3) 를 구하려면 f(2) + f(1) 니까 f(2) 를 먼저 구해야지
+      f(2) 를 구하려면 f(1) + f(0) 니까 f(1) 을 먼저 구해야지
+      f(1) 를 구하려면 f(0) + f(-1) 니까 f(0) 을 먼저 구해야지
+      f(0) 를 구하려면 f(-1) + f(-2) 니까 f(-1) 을 먼저 구해야지
+      f(-1) 를 구하려면 f(-2) + f(-3) 니까 니까 f(-2) 를 먼저 구해야지
+      ....
+      이렇게 끝이 없이 계산 계획만 세우다가 프로그램 터져버림
+      ```
+
+- 예 1) 피보나치 함수
+
+    ```python
+    def fib(n):
+        # Base Case
+        if n <= 1:
+            result = 1
     
-    # Logic (induction)
-
-
-def f(i):
-    # Base case
-    if i <= 1:
-        return 1
-
-    # Logic (inductive hypothesis)
-    return f(i - 1) + f(i - 2)
-
-def f(i):
-    if i <= 1:
-        return 1
-    else:
-        return f(i - 1) + f(i - 2)
-
-O(2^n)
-O(n^2)
-
-def f(i): 
-    return f(i - 1) + f(i - 2)
-
-f(7) = f(6) + f(5)
-f(6) = f(5) + f(4)
-f(5) = f(4) + f(3)
-f(4) = f(3) + f(2)
-f(3) = f(2) + f(1)
-f(2) = f(1) + f(0)
-f(1) = f(0) + f(-1)
-f(0) = f(-1) + f(-2)
-f(-1) = f(-2) + f(-3)
-.....
-def sum_1_to_n(n):
-    return 1 + 2 + 3 + 4 + .... + n-1 + n
-
-    # logic
-    sum_1_to_n(n) = n + sum_1_to_n(n-1)
-
-sum_1_to_n(10)
-
-def fact(n):
-    ????
-
-fact(10)
-
-n! = 1 * 2 * 3 * .... * n
-
-- 재귀함수는 함부로 쓰면 안됨
-    - 계산량이 exponential 하게 많아질 수 있기 때문에
-    - 예) f(n) = f(n-1) + f(n-2)
-- 빠른 재귀함수를 만드는 방법
-    - (O) Dynamic programming
-    - (X) Tail recursion
-- Dynamic programming
-    - 내가 이미 계산한 값이 있으면, 그 값을 기억해 뒀다가 reuse 하는방식
-
-    - 
-
-    def f(n, memo):
-
-        # Base case
-        
         # Logic
-        
-            # 내가 미리 구한 값이 memo에 있는지 확인
-        
-            # 있으면 그냥 쓰면 되고
-        
-            # 없으면 그때 계산 때린다
-        
-            # 메모한다
-        
-            # 리턴한다
+        else:
+            result = fib(n - 2) + fib(n - 1)
+            
+        return result
+    ```
 
+- 예 2) factorial 함수 (n! = 1 * 2 * 3 *... * n-1 * n)
+
+    ```python
+    def fac(n):
+        # Base case
+        if n == 1:
+            result = 1
     
-    ​        
+        # Logic
+        else:
+            result = n * fac(n - 1)
+    
+        return result
+      
+    print(fac(6))  
+    ```
+
+    실행 결과
+
+    ```
+    720
+    ```
+
+- 예 3) 1 + 2 + 3 + ... + n-1 + n
+
+    ```python
+    def sum_1_to_n(n):
+        # Base case
+        if n == 1:
+            return 1
+          
+        # Logic
+        return sum_1_to_n(n - 1) + n
+      
+    print(sum_1_to_n(10))
+    ```
+
+    실행 결과
+
+    ```
+    55
+    ```
+
+- 그러나... 재귀함수는 함부로 쓰면 안됨
+    - 계산량이 exponential 하게 많아질 수 있기 때문에 / 중복 계산이 너무 많기 때문에
+    - 예) f(n) = f(n-1) + f(n-2)
+- 빠른 재귀함수를 만드는 방법 == 중복 계산을 없애자!
+    - Dynamic programming
+    - Tail recursion - 우리는 이 부분은 스킵합니다
+
+- Dynamic programming
+  - 내가 이미 계산한 값이 있으면, 그 값을 기억해 뒀다가 reuse 하는방식
+
+- 
+
+def f(n, memo):
+
+    # Base case
+    
+    # Logic
+    
+        # 내가 미리 구한 값이 memo에 있는지 확인
+    
+        # 있으면 그냥 쓰면 되고
+    
+        # 없으면 그때 계산 때린다
+    
+        # 메모한다
+    
+        # 리턴한다
+
+
+​        
 
 def f(n, memo):
 
