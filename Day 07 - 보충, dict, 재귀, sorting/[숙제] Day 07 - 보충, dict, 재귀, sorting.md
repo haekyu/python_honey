@@ -34,6 +34,8 @@ def mk_word_dict(word_lst):
 
 words = ["apple", "bear", "person", "aurora", "print", "boy"] 
 word_dict = mk_word_dict(????)
+# word_dict will be
+# {"a": ["apple", "aurora"], "b": ["bear", "boy"], "p": ["person", "print"]}
 words_start_with_a = word_dict[????]
 print(words_start_with_a)
 ```
