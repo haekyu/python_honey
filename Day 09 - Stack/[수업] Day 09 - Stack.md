@@ -3,6 +3,7 @@
 - Stack
 - 행렬 (리스트로 표현)
 - DFS
+- Merge Sort의 Time Complexity
 
 ## Stack
 
@@ -81,3 +82,34 @@
   - 깊이 우선 == 일단 최대한 깊게 가본다 == 갈 데까지 가본다
   - 시작점에서부터, 가능한 길을 최대한 한 방향으로 갈 수 있을 때까지 쭉 가다가, 더 이상 갈 수 없게 되면 다시 한걸음씩 되돌아가다가, 되돌아가는 중간에 다른 갈만한 갈림길이 생기면 그 새로운 갈림길로 또 쭉 갈 수 있을 때까지 진행하며, 그래프 전체를 탐색하는 방법.
 - Stack을 사용하여 구현한다.
+
+
+
+## Merge Sort 의 Time complexity
+
+- Merge sort의 Time complexity는 O(n log n) 으로 알려져 있다. 왜 그럴까?
+
+- 방법 1) Master method 사용
+
+  - T(n) = n짜리 리스트를 merge sort 하는데 걸리는 시간이라고 하자.
+    - 그러면 아래와 같이 T(n) = 2 * T(n/2) + O(n) 의 점화식을 구할 수 있다.
+
+  <img src="../fig/merge-sort-tc-1.png" style="zoom:180%;" />
+
+  - Master method 를 사용하여 T(n) 을 구해보자. 우선 Master method 는 다음과 같다.
+
+    <img src="../fig/merge-sort-tc-2.png" style="zoom:180%;" />
+
+    - Merge sort 의 점화식은 `T(n) = 2 * T(n/2) + O(n)` 였으니, 공식에 대입하면
+      - a = 2
+      - b = 2
+      - f(n) = O(n), 즉, d = 1
+      - a = 2 = b<sup>d</sup> = 2<sup>1</sup> = 2 이므로 저 세 개의 case 중에 두번 째 case
+      - 따라서, T(n) = O(n<sup>1</sup> log n) = O(n log n)
+
+- 방법 2) 직접 알고리즘을 따라가면서 Time complexity 확인
+
+  <img src="../fig/merge-sort-tc-3.png" style="zoom:180%;" />
+
+
+
