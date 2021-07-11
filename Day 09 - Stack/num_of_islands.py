@@ -60,8 +60,8 @@ def pick_direction(curr, M, visited):
             continue
 
         if (next_row, next_col) in visited:
-            if visited[(next_row, next_col)]:
-                continue
+            # if visited[(next_row, next_col)]:
+            continue
 
         return move
 
@@ -80,23 +80,29 @@ def dfs(start_row, start_col, M, visited):
     """
 
     stack = Stack()
+    curr_row = start_row
+    curr_col = start_col
     stack.push((start_row, start_col))
 
     while not stack.is_empty():
 
         # Current point
-        curr = stack.pop()
-        visited[curr] = True
+        visited[(curr_row, curr_col)] = True
 
         # Pick direction to move from curr
-        move = pick_direction(curr, M, visited)
+        move = pick_direction(
+            (curr_row, curr_col), 
+            M, 
+            visited
+        )
         if move is None:
+            curr_row, curr_col = stack.pop()
             continue
 
         # Go to the next move
-        next_row = curr[0] + move[0]
-        next_col = curr[1] + move[1]
-        stack.push((next_row, next_col))
+        curr_row = curr_row + move[0]
+        curr_col = curr_col + move[1]
+        stack.push((curr_col, curr_col))
 
     return visited
 
@@ -117,8 +123,8 @@ def count_num_islands(M):
 
             # Skip, if current point is a land but visited
             if (row, col) in visited:
-                if visited[(row, col)]:
-                    continue
+                # if visited[(row, col)]:
+                continue
 
             # If current point is a land and not visited
             num = num + 1
@@ -127,8 +133,7 @@ def count_num_islands(M):
     return num
 
 
-if __name__ == '__main__':
-    M = parse_island('./island.txt')
-    num = count_num_islands(M)
-    print(num)
-
+# if __name__ == '__main__':
+M = parse_island('./island.txt')
+num = count_num_islands(M)
+print(num)
