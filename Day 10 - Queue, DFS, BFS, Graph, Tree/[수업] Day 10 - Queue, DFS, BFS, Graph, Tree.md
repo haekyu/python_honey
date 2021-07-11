@@ -1,4 +1,5 @@
 ## 오늘
+
 - Queue
 - DFS
 - BFS
@@ -6,12 +7,14 @@
 - Tree
 
 ## Queue
+
 - List 의 한 종류
 - 원소를 넣고 뺄 때, 특정한 행위밖에 하지 못하는 list (FIFO)
     - `enqueue`: 원소를 추가할 때는 마지막에 넣고
     - `dequeue`: 원소를 뺄 때는 가장 처음에 들어온 애가 (First in, FI) 먼저 나옴 (First Out, FO)
 
 ## DFS
+
 - Graph 를 탐색하는 알고리즘
     - Graph 를 탐색한다는 이야기는, Graph 의 node 들을 방문해본다는 이야기인데, edge 를 통해서만 방문 진행을 할 수 있다는 이야기
 - DFS 의 인풋
