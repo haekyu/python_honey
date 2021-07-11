@@ -75,16 +75,6 @@
     - `행렬[row]` 를 통해 먼저 row value들을 얻는다. 이 row value들은 해당 row 에 위치한 모든 column 값들을 가지고 있는 리스트이다.
     - `행렬[row][col]`: `행렬[row]`에서 얻은 column value들 중에서, 내가 원하는 특정 col 값을 indexing을 통해 얻는다.
 
-## DFS (Depth First Search)
-
-- 그래프 (Graph) 를 탐색하는 방법.
-- 한국말로는 깊이 우선 탐색법
-  - 깊이 우선 == 일단 최대한 깊게 가본다 == 갈 데까지 가본다
-  - 시작점에서부터, 가능한 길을 최대한 한 방향으로 갈 수 있을 때까지 쭉 가다가, 더 이상 갈 수 없게 되면 다시 한걸음씩 되돌아가다가, 되돌아가는 중간에 다른 갈만한 갈림길이 생기면 그 새로운 갈림길로 또 쭉 갈 수 있을 때까지 진행하며, 그래프 전체를 탐색하는 방법.
-- Stack을 사용하여 구현한다.
-
-
-
 ## Merge Sort 의 Time complexity
 
 - Merge sort의 Time complexity는 O(n log n) 으로 알려져 있다. 왜 그럴까?
