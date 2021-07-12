@@ -57,6 +57,7 @@ def pick_direction(curr, M, visited):
             continue
 
         if M[next_row][next_col] == 0:
+            print(next_row, next_col)
             continue
 
         if (next_row, next_col) in visited:
@@ -103,6 +104,8 @@ def dfs(start_row, start_col, M, visited):
         curr_row = curr_row + move[0]
         curr_col = curr_col + move[1]
         stack.push((curr_col, curr_col))
+
+    print(visited.keys())
 
     return visited
 
