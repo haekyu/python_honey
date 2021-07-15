@@ -12,32 +12,32 @@
 - enumerate
        - iterator와 그 iterator의 순서까지 알고싶을 때
     - 예)
-            ```python
-            for th, word in enumerate(['I', 'am', 'a', 'boy', 'you', 'are', 'a', 'girl']):
-                print('%d 번째 단어는 %s 다.' % (th, word))
-                print('{} 번째 단어는 {} 다.'.format(th, word))
-            ```
+       ```python
+       for th, word in enumerate(['I', 'am', 'a', 'boy', 'you', 'are', 'a', 'girl']):
+         print('%d 번째 단어는 %s 다.' % (th, word))
+         print('{} 번째 단어는 {} 다.'.format(th, word))
+       ```
 
-            출력 결과
+       출력 결과
 
-            ```
-            0 번째 단어는 I 다.
-            0 번째 단어는 I 다.
-            1 번째 단어는 am 다.
-            1 번째 단어는 am 다.
-            2 번째 단어는 a 다.
-            2 번째 단어는 a 다.
-            3 번째 단어는 boy 다.
-            3 번째 단어는 boy 다.
-            4 번째 단어는 you 다.
-            4 번째 단어는 you 다.
-            5 번째 단어는 are 다.
-            5 번째 단어는 are 다.
-            6 번째 단어는 a 다.
-            6 번째 단어는 a 다.
-            7 번째 단어는 girl 다.
-            7 번째 단어는 girl 다.
-            ```
+       ```
+       0 번째 단어는 I 다.
+       0 번째 단어는 I 다.
+       1 번째 단어는 am 다.
+       1 번째 단어는 am 다.
+       2 번째 단어는 a 다.
+       2 번째 단어는 a 다.
+       3 번째 단어는 boy 다.
+       3 번째 단어는 boy 다.
+       4 번째 단어는 you 다.
+       4 번째 단어는 you 다.
+       5 번째 단어는 are 다.
+       5 번째 단어는 are 다.
+       6 번째 단어는 a 다.
+       6 번째 단어는 a 다.
+       7 번째 단어는 girl 다.
+       7 번째 단어는 girl 다.
+       ```
     
 - zip
     - 여러 iterator를 병렬적으로 한번에 알고싶을 때
