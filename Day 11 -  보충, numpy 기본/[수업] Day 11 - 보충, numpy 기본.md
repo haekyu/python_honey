@@ -14,8 +14,8 @@
     - 예)
        ```python
        for th, word in enumerate(['I', 'am', 'a', 'boy', 'you', 'are', 'a', 'girl']):
-         print('%d 번째 단어는 %s 다.' % (th, word))
-         print('{} 번째 단어는 {} 다.'.format(th, word))
+           print('%d 번째 단어는 %s 다.' % (th, word))
+           print('{} 번째 단어는 {} 다.'.format(th, word))
        ```
 
        출력 결과
