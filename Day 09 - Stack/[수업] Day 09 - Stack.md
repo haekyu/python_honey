@@ -75,7 +75,7 @@
     - `행렬[row]` 를 통해 먼저 row value들을 얻는다. 이 row value들은 해당 row 에 위치한 모든 column 값들을 가지고 있는 리스트이다.
     - `행렬[row][col]`: `행렬[row]`에서 얻은 column value들 중에서, 내가 원하는 특정 col 값을 indexing을 통해 얻는다.
 
-## Merge Sort 의 Time complexity
+## Merge Sort 의 Time complexity (추후 업데이트 예정)
 
 - Merge sort의 Time complexity는 O(n log n) 으로 알려져 있다. 왜 그럴까?
 
