@@ -24,27 +24,24 @@
     - make directory. 디렉토리 생성
     - `mkdir <원하는 디렉토리 경로/이름>`
 - `cp`
-    - copy. 파일 복사
-    - `cp <from 경로> <to 경로>`
+    - 파일 복사: `cp <from 경로> <to 경로>`
         - ex) cp love.txt ../love2.txt 하면 현재 디렉토리의 love.txt를 상위 폴더의 love2.txt로 복사
-    - 옵션
-        - `cp -r <from 경로> <to 경로>`
-            - 디렉토리 복사.
-            - 디렉토리를 복사하고싶으면 반드시 -r 옵션을 줘야 함.
-- mv 
+    - 디레토리 복사: `cp -r <from 경로> <to 경로>`
+        - 디렉토리 복사.
+        - 디렉토리를 복사하고싶으면 반드시 -r 옵션을 줘야 함.
+- `mv`
     - move. 파일/디렉토리 이동 
-    - move from to
-- rm
+    - `move <from 경로> <to 경로>`
+- `rm`
     - remove
-    - rm 파일이름
-    - 옵션
-        - rm -r 디렉토리
-            - 디렉토리 제거
-        - rm -i 파일
-            - 파일 삭제하기 전에 정말 삭제할 거냐고 yes or no 물어봄.
-            - 우리는 alias를 통해 rm 을 하면 항상 rm -i가 실행되게끔 만들어 놓음.
+    - 파일 제거: `rm <삭제할 파일 경로>`
+    - 디렉토리 제거: `rm -r <삭제할 디렉토리 경로>` 
+    - 파일 삭제 전 yes or no 묻기: `-i` 옵션 주기
+        - `rm -i 파일 경로`
+        - `rm -ir 디렉토리 경로`
 - python 프로그램 실행시키기
     - python *.py 하면 됨.
+
 
 ## Git
 ### Why Git?
