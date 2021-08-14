@@ -2,18 +2,10 @@
 - Linux command
 - Git
 
-## Linux command
-- pwd: 현재 공간의 절대경로
-- cd <경로>: change directory to <경로>, 즉, <경로> 로 이동
-- ls: list. 현재 위치의 파일/디렉토리의 리스트를 보여줘
-- mv <from경로> <to 경로>
-    - <from경로> 에 있는 아이템을 <to 경로> 로 옮기기
-- cp: 어떤 아이템 (파일/디렉토리) 를 copy
-
-## Shell
-- clear
+## Limux command
+- `clear`
     - 화면 정리.
-- ls
+- `ls`
     - list의 줄임말. 현재 위치의 file list를 보여줌.
     - 옵션
         - `ls -a`
@@ -23,15 +15,15 @@
         - `ls -t`
             - 시간순 배열
         - `ls -alt` 등으로 여러 옵션을 한꺼번에 줄 수 있다.
-- cd
+- `cd`
     - change directory. 내가 원하는 디렉토리로 이동
     - `cd <내가 이동하고싶은 디렉토리 경로>`
         - ex) cd ~/Desktop 하면 바탕화면으로 이동
     - cf) ~ 은 홈 화면을 의미. 윈도우에서는 C:/Users/내 이름/ 이었던듯.
-- mkdir
+- `mkdir`
     - make directory. 디렉토리 생성
     - `mkdir <원하는 디렉토리 경로/이름>`
-- cp 
+- `cp`
     - copy. 파일 복사
     - `cp <from 경로> <to 경로>`
         - ex) cp love.txt ../love2.txt 하면 현재 디렉토리의 love.txt를 상위 폴더의 love2.txt로 복사
